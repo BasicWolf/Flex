@@ -1,0 +1,31 @@
+<script>
+
+var PRIVACY_POLICY_VERSION = "1.0";
+var PRIVACY_COOKIE_NAME = 'privacyAccepted' + PRIVACY_POLICY_VERSION
+
+if (!cookieExists(PRIVACY_COOKIE_NAME)) {
+    document.addEventListener("DOMContentLoaded",function(){
+        document.getElementById('privacy_policy_popup').style['display'] = 'block';
+        //here code
+    });
+}
+
+function privacyOk() {
+    var expires = ' expires=Fri, 31 Dec 9999 23:59:59 GMT;';
+
+    document.cookie = PRIVACY_COOKIE_NAME + '=true; ' + expires;
+    document.getElementById('privacy_policy_popup').remove();
+}
+
+function cookieExists(name) {
+    return document.cookie.split(';').filter(function(item) {
+        return item.trim().indexOf(name + '=') == 0;
+    }).length
+}
+
+function disableGoogleAnalytics() {
+    document.cookie = 'disable_google_analytics=true; expires=Fri, 31 Dec 9999 23:59:59 GMT;';
+    window['ga-disable-{{ GOOGLE_ANALYTICS }}'] = true;
+    alert('Google Analytics have been successfully disabled!');
+}
+</script>
