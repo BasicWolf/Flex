@@ -72,6 +72,10 @@
   </div>
   {% endif %}
 
+  {% if SIMPLE_COMMENTS %}
+  {% include "partial/simple_comments.html" %}
+  {% endif %}
+
   {% include "partial/series.html" %}
 
   {% include "partial/neighbors.html" %}
@@ -81,6 +85,7 @@
   {% if ADD_THIS_ID %}
   <div class="addthis_relatedposts_inline"></div>
   {% endif %}
+
 
   {% if GOOGLE_ADSENSE and GOOGLE_ADSENSE.ads.article_bottom %}
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
