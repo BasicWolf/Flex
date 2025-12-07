@@ -1,8 +1,23 @@
 <div class="submit-comment-form">
     <label for="name">Introduce yourself:</label>
-    <input type="text" name="name" id="name" required />
+    <input type="text" name="name" id="comment_name" required />
     <br>
     <textarea id="comment_body" placeholder="Write your comment here"></textarea>
     <br>
-    <button>send comment"</button>
+    <button onClick="postComment()">send comment"</button>
 </div>
+<script>
+  async function postComment() {
+      let commentResponse = await fetch('http://127.0.0.1:3000/comments', {
+          method: 'POST',
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              name: document.getElementById('comment_name').value,
+              body: document.getElementById('comment_body').value
+          })
+      })
+      console.log("Response: ", commentResponse);
+  }
+</script>
